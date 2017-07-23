@@ -32,8 +32,11 @@ int main(int argc, const char * argv[]) {
    
     
     
-    myWeb.addVertex("whatAMIDoing");
+    myWeb.addVertex("test1");
     myWeb.addVertex("test2");
+    myWeb.addVertex("test3");
+    
+    myWeb.addEdge("test1", "test3", 1);
     
     
     myWeb.printGraph();

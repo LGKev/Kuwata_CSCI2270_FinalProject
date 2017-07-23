@@ -24,6 +24,7 @@ struct adjVertex{
     bool visted = false;
     int weight = 1;
     adjVertex * next;//down the link list column
+    adjVertex * parent; //link up, for undriectional
     
 };
 

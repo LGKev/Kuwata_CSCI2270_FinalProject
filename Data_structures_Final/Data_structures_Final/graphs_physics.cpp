@@ -63,7 +63,13 @@ void graphs_physics:: addVertex(string _topic){
 }
 
 void graphs_physics:: addEdge(string t1, string t2, int _weight){
-    for(int i =0; i < graph_array_size; i++){ //loop through the vertices
+    adjVertex * newVertex = new adjVertex;
+    newVertex ->topic_name = t2;
+    newVertex ->next = nullptr;
+    
+    
+   // search for where to attach newest node.
+        for(int i =0; i < current_array_index; i++){ //loop through the vertices
         if(graph_array[i].head->topic_name == t1){
             
             //trying to traverse down linked list from a given element in the graph_array.
@@ -73,15 +79,23 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
             adjVertex *walker = graph_array[i].head;
             
             
-            while(walker != nullptr){
+            while(walker->next != nullptr){
                //now we traverse the linked list.
                 if(walker->topic_name == t2){
                     //we can connect becasuse they share a path.
                     //make them connect with passing next and null and hsit. like parents and child. link forward and bakcwards.
+                    cout <<"already exists. terminating" << endl;
+                    return;
                 }
                
                 walker = walker->next;
             }
+            
+            //not found so we can add it then.
+            cout << "edge added" << endl;
+            walker->next = newVertex;
+            return;
+            
         }
     }
 }
@@ -124,6 +138,9 @@ int graphs_physics:: loadFile(char * fileName){
     //now create the array since we know the size
     
     graph_array = new adjList[graph_array_size];
+    for(int i=0; i<graph_array_size; i++){
+        graph_array[i].head = NULL; //just to solve any bad access when adding nodes. we depend on if null or not
+    }
    
     return graph_array_size;
 }
