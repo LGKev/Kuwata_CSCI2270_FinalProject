@@ -147,7 +147,7 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
                 cout << walker->topic_name << "-->" ;
                 walker = walker->next;
             }
-            cout << walker->topic_name << "-->" ;
+            cout << walker->topic_name ;
             cout << endl;
         }
     }

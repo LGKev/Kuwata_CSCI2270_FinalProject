@@ -67,8 +67,8 @@ int main(int argc, const char * argv[]) {
 
 //    myWeb.addEdge("line 2", "line 5", 1);
 //    myWeb.addEdge("line 4", "line 5", 1);
-//    myWeb.addEdge("line 5", "line 2", 1);
-    
+     myWeb.addEdge("line 2", "line 4", 1); //correctly fails and does not add it.
+    myWeb.addEdge("line 3", "line 6", 2 );
     
     //verify results are correct
     cout << endl;
