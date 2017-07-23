@@ -1,3 +1,4 @@
+
 //
 //  graphs_physics.cpp
 //  Data_structures_Final
@@ -33,10 +34,7 @@ graphs_physics::  ~graphs_physics(){}
 void graphs_physics:: addVertex(string _topic){
     bool found = false;
     
-    
-    
-    
-    for(int i =0; i < graph_array_size && graph_array[i].head != NULL; i++){
+    for(int i =0; i < current_array_index && graph_array[i].head != NULL; i++){
         if(graph_array[i].head->topic_name  == _topic){
             found = true;
             cout << "vertex already exitst, this is a duplicate" << endl;
@@ -84,9 +82,9 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
     }
     
     if(doesVertexExist1 == false || doesVertexExist2 == false){
-        cout << "a valid edge cannot be formed" << endl;
+        cout << "a valid edge cannot be formed:  \t";
         if(doesVertexExist1 == false && doesVertexExist2 == false){
-            cout << t1 << " & " << t2 << "are not valid vertex" << endl;
+            cout << t1 << " & " << t2 << " are not valid vertex" << endl;
         }
         else if(doesVertexExist1 == false){
             cout << "t1: >>" << t1 << "<< is not a valid vertex" << endl;
@@ -144,10 +142,11 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
         int i;
         for(i=0; i < current_array_index; i++){
             adjVertex * walker = graph_array[i].head;
-            while(walker!= nullptr){
+            while(walker->next != nullptr){
                 cout << walker->topic_name << "-->" ;
                 walker = walker->next;
             }
+            cout << walker->topic_name << "-->" ;
             cout << endl;
         }
     }
@@ -161,24 +160,61 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
         int attributeCount = 0; //could be used if each vertex in graph has more info than just name, such as weight.
         
         
+        
+        //determine the size of the array required;
+        //will equal to the number of new lines.
         if(inputFile.is_open() == true){
             string singleLine; // each line parsed at new line
-            
-            
             while(getline(inputFile, singleLine, '\n')){
-                cout << "line read: " << singleLine << endl;
                 graph_array_size++;
             }// end of while loop parsing at new line.
         }
-        
-        
-        
-        //now create the array since we know the size
-        
-        graph_array = new adjList[graph_array_size];
-        for(int i=0; i<graph_array_size; i++){
-            graph_array[i].head = NULL; //just to solve any bad access when adding nodes. we depend on if null or not
+        inputFile.close();
+        if(inputFile.is_open() == false){
+            cout <<"testtt " <<endl << endl;
         }
+        
+        inputFile.open(fileName);
+
+        
+        cout <<"count is: " << graph_array_size << endl;
+    
+        //now create the array since we know the size
+        graph_array = new adjList[graph_array_size];
+        
+        for(int i=0; i<graph_array_size; i++){
+            
+            graph_array[i].head = NULL;
+        }
+
+        
+        
+        current_array_index = 0;
+        //PARSE AGAIN;
+        if(inputFile.is_open() == true){
+            string singleLine;
+            while(getline(inputFile, singleLine, '\n')){
+                cout <<"line just read: " << singleLine << endl;
+                
+                adjVertex *newVertex = new adjVertex;
+                newVertex ->next = nullptr;
+                newVertex->topic_name = singleLine;
+                
+                graph_array[current_array_index].head = newVertex;
+                
+                //graph_array[current_array_index].head->topic_name= singleLine;
+                current_array_index++;
+            }
+        }
+        
+        
+//        for(int i=0; i<graph_array_size; i++){
+//            //old was used to build the project up. to get off the gorund.
+//            //graph_array[i].head = NULL; //just to solve any bad access when adding nodes. we depend on if null or not
+//        //no we will add the vertices into the array using addVertex.
+//            
+//            graph_array[i].head =
+//        }
         
         return graph_array_size;
     }

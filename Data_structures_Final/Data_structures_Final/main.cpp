@@ -28,18 +28,16 @@ int main(int argc, const char * argv[]) {
     
     graphs_physics myWeb;
     
-    myWeb.loadFile(filePTR);
+    myWeb.loadFile(filePTR); //load, parse, create array, fill array
    
     
-    
+    /*
     myWeb.addVertex("test1");
     myWeb.addVertex("test2");
     myWeb.addVertex("test3");
     
     
-    // testing valid case:
-    myWeb.addEdge("test1", "test3", 1);
-    myWeb.addEdge("test3", "test1", 1);
+
     
     //testing corner case: where 2nd vertex trying to link to somethign that doesn't exist.
     myWeb.addEdge("test1", "test does not exist", 1);
@@ -48,10 +46,19 @@ int main(int argc, const char * argv[]) {
     
     
     
-    
+    */
     myWeb.printGraph();
     
+    // testing valid case:
+    myWeb.addEdge("line 1", "line 2", 1); //pass
+    myWeb.addEdge("test3", "test1", 1); //fail
+    myWeb.addEdge("line 2", "line 5", 1);
+    myWeb.addEdge("line 4", "line 5", 1);
+    myWeb.addEdge("line 5", "line 2", 1);
     
+    
+    //verify results are correct
+    myWeb.printGraph();
     return 0;
 }
 
