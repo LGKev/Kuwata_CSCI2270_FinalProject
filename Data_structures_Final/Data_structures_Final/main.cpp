@@ -36,7 +36,17 @@ int main(int argc, const char * argv[]) {
     myWeb.addVertex("test2");
     myWeb.addVertex("test3");
     
+    
+    // testing valid case:
     myWeb.addEdge("test1", "test3", 1);
+    myWeb.addEdge("test3", "test1", 1);
+    
+    //testing corner case: where 2nd vertex trying to link to somethign that doesn't exist.
+    myWeb.addEdge("test1", "test does not exist", 1);
+    //testing corner case: where 1st vertex does not exist.
+    myWeb.addEdge("3", "test1", 1);
+    
+    
     
     
     myWeb.printGraph();
