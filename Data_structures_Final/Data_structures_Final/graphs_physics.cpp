@@ -12,6 +12,10 @@
 #include <fstream> //for files
 #include <sstream> //for parsing
 #include <stdio.h>
+#include <vector>
+#include <climits>
+
+
 
 
 
@@ -95,16 +99,10 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
         }
         return;
     }
-    
-    
-    
-    
-    
     adjVertex * newVertex = new adjVertex;
     newVertex ->topic_name = t2;
     newVertex ->next = nullptr;
-    
-    
+
     // search for where to attach newest node.
     for(int i =0; i < current_array_index; i++){ //loop through the vertices
         if(graph_array[i].head->topic_name == t1){
@@ -114,8 +112,7 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
             
             //here walker is 'head' of the linked list down a column.
             adjVertex *walker = graph_array[i].head;
-            
-            
+
             while(walker->next != nullptr){
                 //now we traverse the linked list.
                 if(walker->next->topic_name == t2){
@@ -124,10 +121,8 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
                     cout <<"already exists. terminating" << endl;
                     return;
                 }
-                
                 walker = walker->next;
             }
-            
             //not found so we can add it then.
             cout << "edge added" << endl;
             walker->next = newVertex;
@@ -244,71 +239,134 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
                 //graph_array[current_array_index].head->topic_name= singleLine;
                 current_array_index++;
                 }
-                
-                
-                
             }
         }
-        
-        
-        
-        
-        int attributeCount = 0; //could be used if each vertex in graph has more info than just name, such as weight.
-//PARSE AGAIN: this time is for the edges, now that the vertex has been established.
-        
-        
-        
-        
-        
-        
-
         return current_array_index;
 }
     
     
-    
-    /*
-      //convert singleLine into the linked list vertexs
-     string linkedVertex;
-     stringstream newStringStream(singleLine);
-     
-     while(getline(newStringStream, linkedVertex, ',')){
-     if(attributeCount == 0){
-     //know its the first vertex, this is what head in the array points to first
-     
-     graph_array[current_array_index].head =
-     }
-     }
-*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
+//void graphs_physics:: Dijkstra(string starting, string destination){
+//
+//    adjVertex * start = nullptr;
+//    adjVertex * ending = nullptr;
+//    //search routine to find starting and destination
+//    for (int i = 0; i < current_array_index; i++) {
+//        graph_array[i].head->visited = false;
+//        graph_array[i].head->distance = INT_MAX;
+//        graph_array[i].head->previous = nullptr;
+//        if (graph_array[i].head->topic_name == starting) {
+//            start = graph_array[i].head;
+//        }
+//        if (graph_array[i].head->topic_name == destination) {
+//            ending = graph_array[i].head;
+//        }
+//    }
+//    if (start != nullptr && ending != nullptr)
+//    {
+//        start->visited = true;
+//        start->distance = 0;
+//        cout<<"pushing "<<start->topic_name<<" into solved"<<endl;
+//        vector<adjVertex *> solved;
+//        vector<adjVertex *> path;
+//        solved.push_back(start);
+//            //path.push_back(start);
+//        adjVertex * v;
+//        adjVertex * u;
+//        adjVertex * minVertex;
+//        adjVertex * prev;
+//        while (ending->visited == false) {
+//            int minDistance = INT_MAX;
+//            for (int i = 0; i < solved.size(); i++) {
+//                u = solved[i];
+//                cout<<endl;
+//                cout<<"Inspecting route from "<<u->topic_name<<endl;
+//                
+//                
+//                //MODIFIED
+//                /* Side note to find the size of a given linked list*/
+//                int linkedListSize = 0;
+//                adjVertex *walker = u;
+//                while(walker!=nullptr){
+//                    linkedListSize++;
+//                    walker = walker->next;
+//                }
+//                
+//                
+//                
+//                
+//                
+//                //MODIFIED
+//                //for (int j = 0; j < u->adj.size(); j++) {
+//               // for (int j = 0; j < linkedListSize; j++) {
+//                walker = solved[i].head;
+//                while(walker != nullptr){
+//                v = &solved[i]->adj[j];
+//                    cout<<"-> to "<<v->v->name;
+//                    
+//                    
+//                    if (v->v->visited == false) {
+//                        cout<<", not yet solved,";
+//                        int dist = u->distance + v->weight;
+//                        if (dist < minDistance) {
+//                            cout<<" the minimum distance was "<<minDistance;
+//                            minDistance = dist;
+//                            minVertex = v->v;
+//                            prev = u;
+//                            cout<<" but there is a new minimum distance of "<<dist<<" between "
+//                            <<start->name <<" and "<<minVertex->name<<endl;
+//                        }else{cout<<" the minimum distance is "<<minDistance
+//                            <<" and there is not a new minimum distance "<<dist<<endl;}
+//                    }else{
+//                        cout<<" already solved, moving on"<<endl;
+//                    }
+//                    
+//                    walker = walker->next;
+//                }//end of traverse over the linked list.
+//
+//            }
+//            solved.push_back(minVertex);
+//            cout<<endl;
+//            cout<<"pushing "<<minVertex->name<<" into solved ";
+//            minVertex->distance = minDistance;
+//            minVertex->previous = prev;
+//            minVertex->visited = true;
+//            cout<<minVertex->name;
+//            cout<<"(distance: "<<minVertex->distance
+//            <<", visited: "<<minVertex->visited
+//            <<", parent: "<<minVertex->previous->name<<")"<<endl;
+//            cout<<"destination "<<ending->name<<" solved? "<<ending->visited<<endl;
+//            cout<<endl;
+//        }
+//        cout<<"Shortest Path"<<endl;
+//        vertex * vert = ending;
+//        while (vert != nullptr) {
+//            path.push_back(vert);
+//            vert = vert->previous;
+//        }
+//        for (int i = 0; i < path.size(); i++) {
+//            if (i == path.size()-1)
+//                cout<<path[path.size()-1-i]->name;
+//            else
+//                cout<<path[path.size()-1-i]->name<<" - ";
+//
+//        }
+//        cout<<endl;
+//        cout<<"Minimum Distance: "<<solved[solved.size()-1]->distance<<endl;
+//    }else if (ending!=nullptr){
+//        cout<<"start not found"<<endl;
+//        exit(1);
+//    }else{
+//        cout<<"ending not found"<<endl;
+//        exit(1);
+//    }
+//}
+//
+//
+//
+//    
+//    
+//    
     
     
     

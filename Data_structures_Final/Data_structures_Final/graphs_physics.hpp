@@ -21,16 +21,19 @@ struct vertex;
 struct adjVertex{
     
     string topic_name;
-    bool visted = false;
+    bool visited = false;
     int weight = 1;
+    int distance = 0;
     adjVertex * next;//down the link list column
-    adjVertex * parent; //link up, for undriectional
+    adjVertex * previous; //link up, for undriectional
     
 };
 
 
 struct adjList{
     adjVertex * head; //node below the given vertex. (think of a column)
+   // bool visited = false;
+    //adjVertex *previous = nullptr;
 };
 
 
@@ -49,7 +52,7 @@ public:
     void displayEdges();
     void printGraph();
     int loadFile(char * fileName);
-
+    void Dijkstra(string starting, string destination);
     
 private:
     //attributes of graph class:
