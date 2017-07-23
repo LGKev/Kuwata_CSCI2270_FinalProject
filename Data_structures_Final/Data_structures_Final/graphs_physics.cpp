@@ -9,7 +9,8 @@
 
 #include "graphs_physics.hpp"
 #include <iostream>
-#include <fstream>
+#include <fstream> //for files
+#include <sstream> //for parsing
 #include <stdio.h>
 
 
@@ -117,7 +118,7 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
             
             while(walker->next != nullptr){
                 //now we traverse the linked list.
-                if(walker->topic_name == t2){
+                if(walker->next->topic_name == t2){
                     //we can connect becasuse they share a path.
                     //make them connect with passing next and null and hsit. like parents and child. link forward and bakcwards.
                     cout <<"already exists. terminating" << endl;
@@ -155,9 +156,8 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
     int graphs_physics:: loadFile(char * fileName){
         
         ifstream inputFile(fileName);
+        bool readlinks = false; //used to trigger when to start forming linked lists for adjacent vertex
         
-        
-        int attributeCount = 0; //could be used if each vertex in graph has more info than just name, such as weight.
         
         
         
@@ -168,11 +168,14 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
             while(getline(inputFile, singleLine, '\n')){
                 graph_array_size++;
             }// end of while loop parsing at new line.
+            inputFile.close();
         }
-        inputFile.close();
+        
+        //testing
         if(inputFile.is_open() == false){
             cout <<"testtt " <<endl << endl;
         }
+        //end testing
         
         inputFile.open(fileName);
 
@@ -184,43 +187,97 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
         
         for(int i=0; i<graph_array_size; i++){
             
-            graph_array[i].head = NULL;
+            graph_array[i].head = nullptr;
         }
 
         
-        
         current_array_index = 0;
-        //PARSE AGAIN;
+        //PARSE AGAIN: this time to place all the vertices
         if(inputFile.is_open() == true){
             string singleLine;
             while(getline(inputFile, singleLine, '\n')){
-                cout <<"line just read: " << singleLine << endl;
                 
+                //if we see **** then we know its the links
+                if(singleLine == "****"){
+                    cout << " next we will get links" << endl;
+                    readlinks = true;
+                }
+                
+//                if(readlinks == true){
+//                    graph_array[current_array_index].head->next = ;
+//                }
+                
+                if(readlinks == false){
+                //get a line, parse it for each vertex
+                //create new vertex
                 adjVertex *newVertex = new adjVertex;
-                newVertex ->next = nullptr;
                 newVertex->topic_name = singleLine;
-                
+                newVertex->next = nullptr;
+                //insert into vertex array
                 graph_array[current_array_index].head = newVertex;
                 
                 //graph_array[current_array_index].head->topic_name= singleLine;
                 current_array_index++;
+                }
             }
         }
         
         
-//        for(int i=0; i<graph_array_size; i++){
-//            //old was used to build the project up. to get off the gorund.
-//            //graph_array[i].head = NULL; //just to solve any bad access when adding nodes. we depend on if null or not
-//        //no we will add the vertices into the array using addVertex.
-//            
-//            graph_array[i].head =
-//        }
         
-        return graph_array_size;
-    }
+        
+        int attributeCount = 0; //could be used if each vertex in graph has more info than just name, such as weight.
+//PARSE AGAIN: this time is for the edges, now that the vertex has been established.
+        
+        
+        
+        
+        
+        
+
+        return current_array_index;
+}
     
     
     
+    /*
+      //convert singleLine into the linked list vertexs
+     string linkedVertex;
+     stringstream newStringStream(singleLine);
+     
+     while(getline(newStringStream, linkedVertex, ',')){
+     if(attributeCount == 0){
+     //know its the first vertex, this is what head in the array points to first
+     
+     graph_array[current_array_index].head =
+     }
+     }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
     
@@ -256,31 +313,4 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+

@@ -28,8 +28,9 @@ int main(int argc, const char * argv[]) {
     
     graphs_physics myWeb;
     
-    myWeb.loadFile(filePTR); //load, parse, create array, fill array
+    myWeb.loadFile(filePTR); //load, parse & count, create array, fill array, fill in linked lists too.
    
+    // after loading, the graph should be created, and ready for searching.
     
     /*
     myWeb.addVertex("test1");
@@ -49,15 +50,29 @@ int main(int argc, const char * argv[]) {
     */
     myWeb.printGraph();
     
-    // testing valid case:
+    // testing valid case: manually
     myWeb.addEdge("line 1", "line 2", 1); //pass
-    myWeb.addEdge("test3", "test1", 1); //fail
-    myWeb.addEdge("line 2", "line 5", 1);
-    myWeb.addEdge("line 4", "line 5", 1);
-    myWeb.addEdge("line 5", "line 2", 1);
+    myWeb.addEdge("line 1", "line 4", 1); //pass
+    myWeb.addEdge("line 4", "line 6", 1); //pass
+    myWeb.addEdge("line 4", "line 1", 1); //pass
+    myWeb.addEdge("line 5", "line 3", 1); //pass
+    myWeb.addEdge("line 2", "line 1", 1); //pass
+    myWeb.addEdge("line 1", "line 5", 1); //pass
+    myWeb.addEdge("line 3", "line 5", 1); //pass
+    myWeb.addEdge("line 5", "line 1", 1); //pass
+    myWeb.addEdge("line 6", "line 4", 1); //pass
+    myWeb.addEdge("line 6", "line 4", 1); //pass
+
+
+
+
+//    myWeb.addEdge("line 2", "line 5", 1);
+//    myWeb.addEdge("line 4", "line 5", 1);
+//    myWeb.addEdge("line 5", "line 2", 1);
     
     
     //verify results are correct
+    cout << endl;
     myWeb.printGraph();
     return 0;
 }
