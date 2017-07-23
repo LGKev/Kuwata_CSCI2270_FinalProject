@@ -30,8 +30,6 @@ int main(int argc, const char * argv[]) {
     
     myWeb.loadFile(filePTR);
    
-    //change this line
-    
     
     
     myWeb.addVertex("whatAMIDoing");
