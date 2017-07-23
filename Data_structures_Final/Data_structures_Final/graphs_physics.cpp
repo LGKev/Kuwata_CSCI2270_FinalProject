@@ -197,6 +197,31 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
             string singleLine;
             while(getline(inputFile, singleLine, '\n')){
                 
+                if(readlinks == true){
+                    //want to get a pair
+                    cout << "we have just parsed: " << singleLine <<endl;
+                    
+                    stringstream newPairStream(singleLine);
+                    string linkVertex;
+                    int parsecount = 0;
+                    string start_Vertex;
+                    string end_Vertex;
+                    while(getline(newPairStream, linkVertex, ',')){
+                        if(parsecount==0){
+                            start_Vertex = linkVertex;
+                            parsecount++;
+                        }
+                        else if(parsecount == 1){
+                            end_Vertex = linkVertex;
+                            parsecount = 0;
+                        }
+                    }
+                    addEdge(start_Vertex, end_Vertex, 1);
+                   // addEdge("line 1", "line 6", 2); //does this auto add to the graph?
+                    
+                }
+
+                
                 //if we see **** then we know its the links
                 if(singleLine == "****"){
                     cout << " next we will get links" << endl;
@@ -221,29 +246,6 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
                 }
                 
                 
-                if(readlinks == true){
-                    //want to get a pair
-                    cout << "we have just parsed: " << singleLine <<endl;
-                    
-                    stringstream newPairStream(singleLine);
-                    string linkVertex;
-                    int parsecount = 0;
-                    string start_Vertex;
-                    string end_Vertex;
-                    while(getline(newPairStream, linkVertex, ',')){
-                        if(parsecount==0){
-                            start_Vertex = linkVertex;
-                            parsecount++;
-                        }
-                        else if(parsecount == 1){
-                            end_Vertex = linkVertex;
-                            parsecount = 0;
-                        }
-                    }
-                    
-                    addEdge("line 1", "line 6", 2); //does this auto add to the graph?
-
-                }
                 
             }
         }
