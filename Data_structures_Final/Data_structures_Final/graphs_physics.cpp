@@ -219,6 +219,32 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
                 //graph_array[current_array_index].head->topic_name= singleLine;
                 current_array_index++;
                 }
+                
+                
+                if(readlinks == true){
+                    //want to get a pair
+                    cout << "we have just parsed: " << singleLine <<endl;
+                    
+                    stringstream newPairStream(singleLine);
+                    string linkVertex;
+                    int parsecount = 0;
+                    string start_Vertex;
+                    string end_Vertex;
+                    while(getline(newPairStream, linkVertex, ',')){
+                        if(parsecount==0){
+                            start_Vertex = linkVertex;
+                            parsecount++;
+                        }
+                        else if(parsecount == 1){
+                            end_Vertex = linkVertex;
+                            parsecount = 0;
+                        }
+                    }
+                    
+                    addEdge("line 1", "line 6", 2); //does this auto add to the graph?
+
+                }
+                
             }
         }
         

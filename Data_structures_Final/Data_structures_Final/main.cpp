@@ -51,17 +51,16 @@ int main(int argc, const char * argv[]) {
     myWeb.printGraph();
     
     // testing valid case: manually
-    myWeb.addEdge("line 1", "line 2", 1); //pass
-    myWeb.addEdge("line 1", "line 4", 1); //pass
-    myWeb.addEdge("line 4", "line 6", 1); //pass
-    myWeb.addEdge("line 4", "line 1", 1); //pass
-    myWeb.addEdge("line 5", "line 3", 1); //pass
-    myWeb.addEdge("line 2", "line 1", 1); //pass
-    myWeb.addEdge("line 1", "line 5", 1); //pass
-    myWeb.addEdge("line 3", "line 5", 1); //pass
-    myWeb.addEdge("line 5", "line 1", 1); //pass
-    myWeb.addEdge("line 6", "line 4", 1); //pass
-    myWeb.addEdge("line 6", "line 4", 1); //pass
+//    myWeb.addEdge("line 1", "line 2", 1); //pass
+//    myWeb.addEdge("line 1", "line 4", 1); //pass
+//    myWeb.addEdge("line 4", "line 6", 1); //pass
+//    myWeb.addEdge("line 4", "line 1", 1); //pass
+//    myWeb.addEdge("line 5", "line 3", 1); //pass
+//    myWeb.addEdge("line 2", "line 1", 1); //pass
+//    myWeb.addEdge("line 1", "line 5", 1); //pass
+//    myWeb.addEdge("line 3", "line 5", 1); //pass
+//    myWeb.addEdge("line 5", "line 1", 1); //pass
+//    myWeb.addEdge("line 6", "line 4", 1); //pass
 
 
 
