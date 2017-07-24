@@ -73,6 +73,11 @@ int main(int argc, const char * argv[]) {
     //verify results are correct
     cout << endl;
     myWeb.printGraph();
+    
+    //trying out new shortest path. can't wait.
+    myWeb.Dijkstra("line 2", "line 4");
+    
+    
     return 0;
 }
 
