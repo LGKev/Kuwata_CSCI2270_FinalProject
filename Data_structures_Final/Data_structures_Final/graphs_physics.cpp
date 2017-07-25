@@ -54,7 +54,7 @@ void graphs_physics:: addVertex(string _topic){
             return;
         }
         
-        adjVertex* newVertex = new adjVertex;
+        adjVertex2* newVertex = new adjVertex2;
         
         newVertex->topic_name = _topic;
         newVertex->next = nullptr;
@@ -99,7 +99,7 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
         }
         return;
     }
-    adjVertex * newVertex = new adjVertex;
+    adjVertex2 * newVertex = new adjVertex2;
     newVertex ->topic_name = t2;
     newVertex ->next = nullptr;
 
@@ -111,7 +111,7 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
             // graph array is an array of vertices. , a collection of head pointers.
             
             //here walker is 'head' of the linked list down a column.
-            adjVertex *walker = graph_array[i].head;
+            adjVertex2 *walker = graph_array[i].head;
 
             while(walker->next != nullptr){
                 //now we traverse the linked list.
@@ -137,7 +137,7 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
     void graphs_physics:: printGraph(){
         int i;
         for(i=0; i < current_array_index; i++){
-            adjVertex * walker = graph_array[i].head;
+            adjVertex2 * walker = graph_array[i].head;
             while(walker->next != nullptr){
                 cout << walker->topic_name << "-->" ;
                 walker = walker->next;
@@ -230,7 +230,7 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
                 if(readlinks == false){
                 //get a line, parse it for each vertex
                 //create new vertex
-                adjVertex *newVertex = new adjVertex;
+                adjVertex2 *newVertex = new adjVertex2;
                 newVertex->topic_name = singleLine;
                 newVertex->next = nullptr;
                 //insert into vertex array
@@ -248,8 +248,8 @@ void graphs_physics:: addEdge(string t1, string t2, int _weight){
 
 void graphs_physics:: Dijkstra(string starting, string destination){
 
-    adjVertex * start = nullptr;
-    adjVertex * ending = nullptr;
+    adjVertex2 * start = nullptr;
+    adjVertex2 * ending = nullptr;
     //search routine to find starting and destination
     for (int i = 0; i < current_array_index; i++) {
         graph_array[i].head->visited = false;
@@ -263,19 +263,30 @@ void graphs_physics:: Dijkstra(string starting, string destination){
             break;// modified
         }
     }
+    
+    
+    
+    
+    
+    
+    
     if (start != nullptr && ending != nullptr)
     {
         start->visited = true;
         start->distance = 0;
         cout<<"pushing "<<start->topic_name<<" into solved"<<endl;
-        vector<adjVertex *> solved;
-        vector<adjVertex *> path;
+        vector<adjVertex2 *> solved;
+        vector<adjVertex2 *> path;
         solved.push_back(start);
             //path.push_back(start);
-        adjVertex * v;
-        adjVertex * u;
-        adjVertex * minVertex;
-        adjVertex * prev;
+        adjVertex2 * v;
+        adjVertex2 * u;
+        adjVertex2 * minVertex;
+        adjVertex2 * prev;
+        
+        
+        
+        
         while (ending->visited == false) {
             int minDistance = INT_MAX;
             int testingSolvedsize = solved.size();
@@ -288,24 +299,21 @@ void graphs_physics:: Dijkstra(string starting, string destination){
                 //MODIFIED
                 /* Side note to find the size of a given linked list*/
                 int linkedListSize = 0;
-                adjVertex *walker = u;
+                adjVertex2 *walker = u;
                 while(walker!=nullptr){
                     linkedListSize++;
                     walker = walker->next;
                 }
-                
-                
-                
-                
+ 
                 
                 //MODIFIED
                 //for (int j = 0; j < u->adj.size(); j++) {
                // for (int j = 0; j < linkedListSize; j++) {
                 walker = solved[i]->next;
-                v = walker;
                 while(walker != nullptr){
                // v = &solved[i]->adj[j];
-//                    v = walker;
+                   v = walker;
+                    
                     
                     cout<<"-> to "<<v->topic_name;
                     
@@ -353,9 +361,15 @@ void graphs_physics:: Dijkstra(string starting, string destination){
             <<", parent: "<<minVertex->previous->topic_name<<")"<<endl;
             cout<<"destination "<<ending->topic_name<<" solved? "<<ending->visited<<endl;
             cout<<endl;
+            
+            
+            if(v->topic_name == ending->topic_name){
+                ending->visited = true;
+            }
+            
         }
         cout<<"Shortest Path"<<endl;
-        adjVertex * vert = ending;
+        adjVertex2 * vert = ending;
         while (vert != nullptr) {
             path.push_back(vert);
             vert = vert->previous;

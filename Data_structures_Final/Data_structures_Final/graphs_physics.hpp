@@ -14,24 +14,23 @@
 #include <stdlib.h>
 using namespace std;
 
-struct vertex;
 
 // link list of adjacent nodes/vertex
 // a collection of nodes that are adjacenet make up an adjacent list.
-struct adjVertex{
+struct adjVertex2{
     
     string topic_name;
     bool visited = false;
     int weight = 1;
     int distance = 0;
-    adjVertex * next;//down the link list column
-    adjVertex * previous; //link up, for undriectional
+    adjVertex2 * next;//down the link list column
+    adjVertex2 * previous; //link up, for undriectional
     
 };
 
 
 struct adjList{
-    adjVertex * head; //node below the given vertex. (think of a column)
+    adjVertex2 * head; //node below the given vertex. (think of a column)
    // bool visited = false;
     //adjVertex *previous = nullptr;
 };
