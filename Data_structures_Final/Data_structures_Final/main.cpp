@@ -83,7 +83,6 @@ int main(int argc, const char * argv[]) {
     test.Dijkstra("Mechanics", "Work-Energy Principle");
     test.Dijkstra( "Work-Energy Principle","Mechanics");
     
-    cout <<"============================================================" << endl;
     
     test.BFS_traversal("Mechanics");
     

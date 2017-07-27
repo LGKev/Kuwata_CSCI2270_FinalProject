@@ -46,6 +46,8 @@ public:
     void Dijkstra(string sourceVertex, string destinationVertex);
     int BFSFind(string startVertex);
     void BFS_traversal(string _topic);
+    void DFS_traversal(string _topic);
+
     
     int search_index(string _topic); // returns index
     vertex * search_Vertex(string _topic); //returns pointer to a vertex.

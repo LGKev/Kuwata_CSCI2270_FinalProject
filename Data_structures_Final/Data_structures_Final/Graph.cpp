@@ -177,6 +177,8 @@ void Graph::printGraph2(){
 }
 
 void Graph:: BFS_traversal(string _topic){
+    cout <<"============================================================" << endl;
+
     vertex * startingVertex = search_Vertex(_topic);
     
     //KEY you need to make sure the values are correct before you go down this path.
@@ -191,6 +193,7 @@ void Graph:: BFS_traversal(string _topic){
     while(!visitedQ.empty()){
         vertex * n = visitedQ.front();//line 5 //to save teh value we want to deque
         visitedQ.pop(); //to remove what we just dequeued.
+        
         for(int x =0; x  < n->adj.size(); x++){
             if(n->adj[x].v->visited == false){
                 n->adj[x].v->visited = true;
@@ -198,8 +201,15 @@ void Graph:: BFS_traversal(string _topic){
                 visitedQ.push(n->adj[x].v);
             }
         }
+
     }
 }
+
+void Graph:: DFS_traversal(string _topic){
+    
+}
+
+
 
 int Graph::  search_index(string _topic){ //returns index
     for(int i = 0; i < vertices.size(); i++)
@@ -286,12 +296,12 @@ void Graph::Dijkstra(string starting, string destination)
             path.push_back(vert);
             vert = vert->previous;
         }
-        cout << "Shorthis Path" << endl;
+        cout << "Shortist Path" << endl;
         for (int i = 0; i < path.size(); i++) {
             if (i == path.size()-1)
                 cout<<path[path.size()-1-i]->topic;
             else
-                cout<<path[path.size()-1-i]->topic<<" - ";
+                cout<<path[path.size()-1-i]->topic<<" -> ";
             
         }
         cout<<endl;
