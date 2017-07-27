@@ -56,21 +56,6 @@ using namespace std;
 //
 //}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -89,86 +74,34 @@ int main(int argc, const char * argv[]) {
     
     Graph test;
     
+//   test.printGraph();
+    test.printGraph2();
     
-    /* Adding the vertices of the physics map, will be replaced with a read file*/
-    test.addVertex("Mechanics");
-    test.addVertex("Velocity & Acceleration");
-    test.addVertex("Conservation Laws");
-    test.addVertex("Periodic Motion");
-    test.addVertex("Newton's Laws");
-    test.addVertex("Mass");
-    test.addVertex("Forces");
-    test.addVertex("Gravity");
-    test.addVertex("Work, Energy, Power");
-    test.addVertex("Conservation of Energy");
-    test.addVertex("Conservation of Linear Momentum");
-    test.addVertex("Conservation of Angular Momentum");
-    test.addVertex("Circular Motioin");
-    test.addVertex("Orbits");
-    test.addVertex("Rotation");
-    test.addVertex("Torques");
-    test.addVertex("Equilibrium");
-
-    /* Adding the edges of the physics map, will be replaced with a read file*/
-    test.addEdge("Mechanics", "Conservation Laws", 1);
-    test.addEdge("Conservation Laws", "Conservation of Energy", 1);
-    test.addEdge("Conservation of Energy", "Work, Energy, Power", 1);
-    test.addEdge("Mechanics", "Velocity & Acceleration", 1);
-    test.addEdge("Newton's Laws", "Mass", 1);
-    test.addEdge("Mass", "Forces", 1);
-    test.addEdge("Forces", "Gravity", 1);
-    test.addEdge("Conservation Laws", "Conservation of Energy", 1);
-    test.addEdge("Conservation of Energy", "Work, Energy, Power", 1);
-
-
-    
-    
-    test.printGraph();
+    //test.printGraph();
     cout << endl << endl;
     
-    test.Dijkstra("Mechanics", "Work, Energy, Power");
+    test.Dijkstra("Mechanics", "Work-Energy Principle");
+    test.Dijkstra( "Work-Energy Principle","Mechanics");
     
+    cout <<"============================================================" << endl;
+    
+    test.BFS_traversal("Mechanics");
     
     /* old Code, physics_graph ADT.*/
-    
-    graphs_physics myWeb;
-    
-    myWeb.loadFile(filePTR); //load, parse & count, create array, fill array, fill in linked lists too.
-
-    myWeb.printGraph();
-    
-    // testing valid case: manually
-   // myWeb.addEdge("line 1", "line 2", 1); //pass
-myWeb.addEdge("line 1", "line 4", 1); //pass
-    myWeb.addEdge("line 4", "line 6", 1); //pass
-    myWeb.addEdge("line 4", "line 1", 1); //pass
-    myWeb.addEdge("line 5", "line 3", 1); //pass
-    myWeb.addEdge("line 2", "line 1", 1); //pass
-    myWeb.addEdge("line 1", "line 5", 1); //pass
-    myWeb.addEdge("line 3", "line 5", 1); //pass
-    myWeb.addEdge("line 5", "line 1", 1); //pass
-    myWeb.addEdge("line 6", "line 4", 1); //pass
-
-
-
-
-//    myWeb.addEdge("line 2", "line 5", 1);
-////    myWeb.addEdge("line 4", "line 5", 1);
-//    myWeb.addEdge("line 2", "line 4", 1); //correctly fails and does not add it.
-//    myWeb.addEdge("line 3", "line 6", 2 );
-//    myWeb.addEdge("line 2", "line 5", 6);
 //    
-    //verify results are correct
-    cout << endl;
-    myWeb.printGraph();
+////    graphs_physics myWeb;
+////    
+////    myWeb.loadFile(filePTR); //load, parse & count, create array, fill array, fill in linked lists too.
+//
+//
+//
+//
+//    //verify results are correct
+//    cout << endl;
+//    myWeb.printGraph();
     
-    //trying out new shortest path. can't wait.
-   // myWeb.Dijkstra("line 2", "line 4"); //worked
-    
-    //trying out new shortest path. can't wait.
-    // myWeb.Dijkstra("line 2", "line 5"); //fails and infinite loop
-    // my dijkstra needs to be fixed. probably the way my links are made. and how i defined my structs is fundamentally wrong.
-    
+
+
     
     BST_Units ex;
    
@@ -182,7 +115,6 @@ myWeb.addEdge("line 1", "line 4", 1); //pass
     ex.inOrderPrint(energy);
     
     cout << endl;
-    
     
     
     return 0;

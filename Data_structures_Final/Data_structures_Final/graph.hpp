@@ -9,6 +9,7 @@
 #ifndef Graph_hpp
 #define Graph_hpp
 
+#include "BST_Units.hpp"
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
@@ -28,7 +29,7 @@ struct vertex{
     std::string topic;
     bool visited;
     int distance;
-//    infoBlock *equations;
+    infoBlock *equations;
     vertex *previous;
     std::vector<adjVertex> adj; //mine this is the HEAD of the linked list
 };
@@ -44,23 +45,17 @@ public:
     void printGraph();
     void Dijkstra(string sourceVertex, string destinationVertex);
     int BFSFind(string startVertex);
-protected:
+    void BFS_traversal(string _topic);
+    
+    int search_index(string _topic); // returns index
+    vertex * search_Vertex(string _topic); //returns pointer to a vertex.
+
+
 private:
     //vector<edge> edges;
     std::vector<vertex> vertices; //this is replacign my array
     
 };
-
-
-//class Graph{
-//public:
-//    
-//    
-//private:
-//    
-//   
-//    
-//};
 
 #endif /* Graph_hpp */
 

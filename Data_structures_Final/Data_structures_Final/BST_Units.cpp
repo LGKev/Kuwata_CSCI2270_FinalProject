@@ -53,9 +53,7 @@ infoBlock * BST_Units:: search(string topic){
 }
 
 
-infoBlock * BST_Units:: deleteNode(string topic){ //probably won't use
-    return root;
-}
+
 
 
 
@@ -72,8 +70,13 @@ void  BST_Units:: inOrderPrint(infoBlock * node){
 }
 
 
+/*
+ Not yet utilized.
+ */
 infoBlock * BST_Units:: treeMinimum(){ //probably won't use
     return root;
 }
 
-
+infoBlock * BST_Units:: deleteNode(string topic){ //probably won't use
+    return root;
+}
