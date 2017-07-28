@@ -430,7 +430,7 @@ void Graph::Dijkstra(string starting, string destination)
         exit(1);
     }else{
         cout<<"ending not found"<<endl;
-        exit(1);
+        exit(2);
     }
 }
 

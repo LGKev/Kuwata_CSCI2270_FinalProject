@@ -82,35 +82,3 @@ private:
 #endif /* Graph_hpp */
 
 
-/*
- 
-        Possibly Useful:
- 
- ==============================================================================
- int Graph::BFSFind(std::string startVertex)
- {
- bool foundStartVertex=false;
- for (int i=0;i<vertices.size(); i++){
- if (vertices[i].name == startVertex){
- return i;
- }
- }
- cout<<"starting vertex does not exist"<<endl;
- return -1;
- }}
- 
- 
- 
- ==============================================================================
- 
- 
- ==============================================================================
-
- 
- 
- 
- 
- ==============================================================================
-
- 
- */
