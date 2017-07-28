@@ -24,7 +24,6 @@
 #include <fstream>
 
 #include "Graph.hpp"
-#include "BST_Units.hpp"
 
 
 using namespace std;
@@ -74,17 +73,28 @@ int main(int argc, const char * argv[]) {
     
     Graph test;
     
+    test.print_equations();
+    
 //   test.printGraph();
     test.printGraph2();
     
     //test.printGraph();
     cout << endl << endl;
     
-    test.Dijkstra("Mechanics", "Work-Energy Principle");
-    test.Dijkstra( "Work-Energy Principle","Mechanics");
+  //  test.Dijkstra("Mechanics", "Work-Energy Principle");
+  //  test.Dijkstra( "Work-Energy Principle","Mechanics");
     
     
-    test.BFS_traversal("Mechanics");
+    test.BFS_traversal("Elctricity & Magnetism");
+    
+    cout <<"============================================================" << endl;
+
+    test.DFS_iterrative("Elctricity & Magnetism");
+    cout <<"============================================================" << endl;
+
+    test.DFS_traversal("Elctricity & Magnetism");
+    
+    test.Dijkstra("Elctricity & Magnetism", "Power");
     
     /* old Code, physics_graph ADT.*/
 //    
@@ -101,19 +111,6 @@ int main(int argc, const char * argv[]) {
     
 
 
-    
-    BST_Units ex;
-   
-    cout << endl << endl;
-    
-    
-    infoBlock * energy = ex.insertNode("Kinetic", "1/2mv^2");
-    ex.insertNode("Potential", "mgh");
-    ex.insertNode("Work", "force cross distance");
-
-    ex.inOrderPrint(energy);
-    
-    cout << endl;
     
     
     return 0;

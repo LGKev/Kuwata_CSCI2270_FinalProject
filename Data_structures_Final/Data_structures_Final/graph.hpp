@@ -9,7 +9,6 @@
 #ifndef Graph_hpp
 #define Graph_hpp
 
-#include "BST_Units.hpp"
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
@@ -18,12 +17,26 @@
 #include <climits>
 using namespace std;
 
+
+struct infoBlock{
+    string equation= "";
+    //constants?
+    infoBlock * next;
+    
+    
+};
+
+
+
+
 struct vertex;
 
 struct adjVertex{
     vertex *v;
     int weight;
 };
+
+
 
 struct vertex{
     std::string topic;
@@ -39,14 +52,21 @@ class Graph
 public:
     Graph();
     ~Graph();
-    void addEdge(std::string v1, std::string v2, int weight);
-    void addVertex(std::string topic);
-    void printGraph2();
+    void addEdge(std::string v1, std::string v2, int weight); // (1)
+    void addVertex(std::string topic, string _eqn1, string _eqn2); // (2)
+    void printGraph2(); // (3)
     void printGraph();
-    void Dijkstra(string sourceVertex, string destinationVertex);
-    int BFSFind(string startVertex);
-    void BFS_traversal(string _topic);
-    void DFS_traversal(string _topic);
+     void Dijkstra(string sourceVertex, string destinationVertex); //(4)
+    
+    int BFSFind(string startVertex); //(5)
+    void BFS_traversal(string _topic); //(6)
+    void DFS_traversal(string _topic); //(7)
+    void DFS(vertex * topic); //(8)
+    
+    //print all equations is my 7th thing
+    void print_equations(); //(9)
+    
+    void DFS_iterrative(string _topic); //(10)
 
     
     int search_index(string _topic); // returns index

@@ -68,7 +68,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "grap"
+            argument = "equationsTXT.txt"
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>

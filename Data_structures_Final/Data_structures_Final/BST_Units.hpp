@@ -14,14 +14,10 @@
 using namespace std;
 
 struct infoBlock{
-    string topicName;
-    string equation;
+    string equation= "";
     //constants?
-    infoBlock *parent;
-    infoBlock *left;
-    infoBlock *right;
+    infoBlock * next;
     
-    infoBlock(string _topic, string _eqn, infoBlock *p, infoBlock *l, infoBlock *r): topicName(_topic), equation(_eqn), parent(p), left(l), right(r){};
     
 };
 
@@ -31,15 +27,14 @@ public:
     BST_Units();
     ~BST_Units();
     
-    infoBlock *search(string topic);
-    infoBlock *deleteNode(string topic); //probably won't use
-    infoBlock *buildFromFile(char * fileName);
-    void inOrderPrint(infoBlock * node);
-    infoBlock *insertNode(string topicName, string equation);
+    void inOrderPrint();
+    infoBlock *insertNode( infoBlock * head, string _equation);
+    infoBlock *buildList(string array[], int sizeA);
+    
     
     
 private:
-    infoBlock *root = nullptr;
+    infoBlock *head = nullptr;
     infoBlock *treeMinimum(); //probably won't use
 };
 

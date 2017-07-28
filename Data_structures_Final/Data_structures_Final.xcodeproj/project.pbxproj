@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		440848401F23B120000A92DE /* Shirley_Graphs_Example.txt in Sources */ = {isa = PBXBuildFile; fileRef = 4408483E1F23B120000A92DE /* Shirley_Graphs_Example.txt */; };
 		440848431F23B149000A92DE /* graphs_physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440848411F23B149000A92DE /* graphs_physics.cpp */; };
 		440848451F23FB63000A92DE /* example_Graphs_structs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 440848441F23FB63000A92DE /* example_Graphs_structs.cpp */; };
 		44D67A8B1F23AD3F00D16302 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44D67A8A1F23AD3F00D16302 /* main.cpp */; };
@@ -28,11 +27,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4408483E1F23B120000A92DE /* Shirley_Graphs_Example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Shirley_Graphs_Example.txt; sourceTree = "<group>"; };
 		440848411F23B149000A92DE /* graphs_physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = graphs_physics.cpp; sourceTree = "<group>"; };
 		440848421F23B149000A92DE /* graphs_physics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = graphs_physics.hpp; sourceTree = "<group>"; };
 		440848441F23FB63000A92DE /* example_Graphs_structs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = example_Graphs_structs.cpp; sourceTree = "<group>"; };
 		440848471F24F56A000A92DE /* graph_input1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = graph_input1.txt; sourceTree = "<group>"; };
+		446C63B11F2AC86A007DA1EF /* equationsTXT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = equationsTXT.txt; sourceTree = "<group>"; };
 		44D67A871F23AD3F00D16302 /* Data_structures_Final */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Data_structures_Final; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D67A8A1F23AD3F00D16302 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44D8585A1F26E30C00814243 /* Graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		44D67A7E1F23AD3F00D16302 = {
 			isa = PBXGroup;
 			children = (
+				446C63B11F2AC86A007DA1EF /* equationsTXT.txt */,
 				440848441F23FB63000A92DE /* example_Graphs_structs.cpp */,
 				44D67A891F23AD3F00D16302 /* Data_structures_Final */,
 				44D67A881F23AD3F00D16302 /* Products */,
@@ -77,7 +77,6 @@
 				44D8585A1F26E30C00814243 /* Graph.cpp */,
 				44D8585B1F26E30C00814243 /* Graph.hpp */,
 				440848421F23B149000A92DE /* graphs_physics.hpp */,
-				4408483E1F23B120000A92DE /* Shirley_Graphs_Example.txt */,
 				440848471F24F56A000A92DE /* graph_input1.txt */,
 				44D8585D1F277F9500814243 /* BST_Units.cpp */,
 				44D8585E1F277F9500814243 /* BST_Units.hpp */,
@@ -144,7 +143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				440848431F23B149000A92DE /* graphs_physics.cpp in Sources */,
-				440848401F23B120000A92DE /* Shirley_Graphs_Example.txt in Sources */,
 				440848451F23FB63000A92DE /* example_Graphs_structs.cpp in Sources */,
 				44D8585F1F277F9500814243 /* BST_Units.cpp in Sources */,
 				44D67A8B1F23AD3F00D16302 /* main.cpp in Sources */,

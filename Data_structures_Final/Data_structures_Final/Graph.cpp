@@ -7,8 +7,8 @@
 //
 /*
  
- The following methods have been adapated and derived from Rhonda Hoenigman's e-book "Visualizing Data Structures". 
-    - Dijkstra, insertVertex, insertEdge
+ The following methods have been adapated and derived from Rhonda Hoenigman's e-book "Visualizing Data Structures".
+ - Dijkstra, insertVertex, insertEdge
  
  */
 
@@ -18,82 +18,135 @@
 
 Graph::Graph()
 {
- 
-    
+    this->addVertex("Elctricity & Magnetism", "", "");
     /* Adding the vertices of the physics map, will be replaced with a read file*/
-    this->addVertex("Mechanics");
-    this->addVertex("Velocity & Acceleration");
-    this->addVertex("Conservation Laws");
-    this->addVertex("Periodic Motion");
-    this->addVertex("Newton's Laws");
-    this->addVertex("Mass");
-    this->addVertex("Forces");
-    this->addVertex("Gravity");
-    this->addVertex("Work, Energy, Power");
-    this->addVertex("Conservation of Energy");
-    this->addVertex("Conservation of Linear Momentum");
-    this->addVertex("Conservation of Angular Momentum");
-    this->addVertex("Circular Motion");
-    this->addVertex("Orbits");
-    this->addVertex("Rotation");
-    this->addVertex("Torques");
-    this->addVertex("Equilibrium");
-    this->addVertex("Work-Energy Principle");
     
-    /* Adding the edges of the physics map, will be replaced with a read file*/
-    this->addEdge("Mechanics", "Velocity & Acceleration", 1);
-    this->addEdge("Mechanics", "Conservation Laws", 1);
-    this->addEdge("Mechanics", "Circular Motion", 1);
+    this->addVertex("Voltage", "V = I * R", "V_1 + V_2 = V_tot, Kirchoff Voltage Law");
+    this->addVertex("Current", "I = V / R ", "dQ/dT");
+    this->addVertex("Ohm's Law", "V = I * R", "");
+    this->addVertex("Resistor", "Resistance = (P*L)/A ", "R = V / I");
+    this->addVertex("Capacitor", "Q = C/V", "1/C_eq = 1/C_1 + 1/C_2 + ... + 1/C_n");
+    this->addVertex("Inductor", "Emf = -L (dI/dt)", "");
+    this->addVertex("Electric Charge", "Q", "");
+    this->addVertex("Electric Force", "F = k * Q_1 * Q_2 / r^2", "k = 9x10^9 [N*m^2/C^2]");
+    this->addVertex("Couloumb's Law", "E = F/Q", "");
+    this->addVertex("Lorentz Force", "F = E_force + B_force", "F = q*E + qv X B");
+    this->addVertex("Biot-Savart Law", "dB = u * I *dL X I/ (4*pi*r^2)", "");
+    this->addVertex("Faraday Law", "Emf = -N * dPhi/dt", "Phi = magnetic Flux / m^2" );
+    this->addVertex("Power", "P = I * V", "P = I^2 * R");
+    this->addVertex("Gauss's Law", "Phi - Q/E_o", "integrate [E•dA] = Q/E_o");
+    this->addVertex("Magnetic Field", "F = qv X B", "");
+    this->addVertex("Ampere's Law", "Sum[B||∆l] = u_o * I", "");
+    
+    //vertices with out equations but help link everything
+    this->addVertex("Electric Circuits", "", "");
+    this->addVertex("Maxwell's Equations", "", "");
+    this->addVertex("Charge", "", "");
+    
+    
+    
+    
+    
+    this->addEdge("Electric Circuits", "Voltage", 1);
+    this->addEdge("Electric Circuits", "Current", 1);
+    this->addEdge("Electric Circuits", "Power", 1);
+    this->addEdge("Electric Circuits", "Resistor", 1);
+    this->addEdge("Electric Circuits", "Inductor", 1);
+    this->addEdge("Electric Circuits", "Capacitor", 1);
+    
+    this->addEdge("Voltage", "Electric Circuits",  1);
+    this->addEdge("Current", "Electric Circuits",  1);
+    this->addEdge("Power",  "Electric Circuits", 1);
+    this->addEdge( "Resistor",  "Electric Circuits",1);
+    this->addEdge( "Inductor", "Electric Circuits", 1);
+    this->addEdge("Capacitor", "Electric Circuits",  1);
+    
+    
+    
+    
+    
+    this->addEdge("Capacitor", "Charge", 1);
+    
+    
+    this->addEdge("Voltage", "Current", 1);
+    this->addEdge("Current", "Voltage", 1);
+    
+    
+    this->addEdge("Voltage", "Resistance", 1);
+    this->addEdge( "Resistance", "Voltage", 1);
+    
+    this->addEdge("Current", "Power", 1);
+    this->addEdge("Power", "Current",  1);
+    
+    this->addEdge("Current", "Resistance", 1);
+    this->addEdge("Resistance", "Current",  1);
+    
+    this->addEdge("Current", "Charge", 1);
+    this->addEdge( "Charge", "Current", 1);
+    
+    
+    
+    
+    this->addEdge("Ohm's Law", "Voltage", 1);
+    this->addEdge("Ohm's Law", "Current", 1);
+    this->addEdge("Ohm's Law", "Power", 1);
+    this->addEdge("Voltage", "Ohm's Law",  1);
+    this->addEdge("Current",  "Ohm's Law", 1);
+    this->addEdge("Power", "Ohm's Law",  1);
+    
+    
+    this->addEdge("Power", "Current", 1);
+    this->addEdge("Power", "Voltage", 1);
+    this->addEdge("Power", "Resistance", 1);
+    this->addEdge("Current", "Power",  1);
+    this->addEdge("Voltage", "Power",  1);
+    this->addEdge("Resistance", "Power",  1);
+    
+    
+    
+    this->addEdge("Elctricity & Magnetism", "Electric Circuits", 1);
+    this->addEdge("Elctricity & Magnetism", "Charge", 1);
+    this->addEdge("Elctricity & Magnetism", "Magnetic Field", 1);
+    this->addEdge("Elctricity & Magnetism", "Lorentz Force", 1);
+    
+    this->addEdge("Electric Circuits",  "Electricity & Magnetism", 1);
+    this->addEdge("Charge", "Electricity & Magnetism",  1);
+    this->addEdge( "Magnetic Field", "Electricity & Magnetism",1);
+    this->addEdge("Lorentz Force", "Electricity & Magnetism",  1);
+    
+    
+    this->addEdge("Magnetic Field", "Ampere's Law", 1);
+    this->addEdge( "Ampere's Law", "Magnetic Field", 1);
+    
+    
+    
+    this->addEdge("Ampere's Law", "Biot-Savart Law", 1);
+    this->addEdge("Biot-Savart Law", "Ampere's Law",  1);
+    
+    
+    this->addEdge( "Biot-Savart Law", "Faraday's Law", 1);
+    this->addEdge( "Faraday's Law", "Biot-Savart Law",  1);
+    
+    
+    
+    this->addEdge( "Lorentz Force", "Maxwell's Equations", 1);
+    this->addEdge(  "Maxwell's Equations", "Lorentz Force", 1);
+    
+    this->addEdge("Couloumb's Law", "Electric Field", 1);
+    this->addEdge("Electric Field", "Couloumb's Law",  1);
+    this->addEdge("Electric Field", "Electric Charge",  1);
+    this->addEdge("Couloumb's Law", "Electric Charge", 1);
+
 
     
     
-    this->addEdge("Velocity & Acceleration", "Newton's Laws", 1);
-    this->addEdge("Newton's Laws", "Mass", 1);
-    this->addEdge("Newton's Laws", "Forces", 1);
-    this->addEdge("Forces", "Gravity", 1);
     
     
-    this->addEdge("Conservation of Energy", "Work, Energy, Power", 1);
-    this->addEdge("Conservation of Energy", "Work-Energy Principle", 1);
-    this->addEdge("Conservation Laws", "Conservation of Energy", 1);
-    this->addEdge("Conservation of Energy", "Work, Energy, Power", 1);
-    this->addEdge("Work, Energy, Power", "Work-Energy Principle", 1);
-    this->addEdge("Conservation Laws", "Conservation of Angular Momentum", 1);
-    this->addEdge("Conservation Laws", "Conservation of Linear Momentum", 1);
-    
-    this->addEdge("Circular Motion", "Orbits", 1);
-    this->addEdge("Orbits", "Rotation", 1);
-    this->addEdge("Torques", "Equilibrium", 1);
-    this->addEdge("Conservation of Angular Momentum", "Torques", 1);
     
     
-    //**
-    this->addEdge("Velocity & Acceleration","Mechanics",  1);
-    this->addEdge("Velocity & Acceleration",    "Periodic Motion",  1);
-    this->addEdge(    "Periodic Motion", "Velocity & Acceleration",  1);
-
-
-    this->addEdge( "Newton's Laws","Velocity & Acceleration", 1);
-    this->addEdge( "Mass","Newton's Laws", 1);
-    this->addEdge( "Forces", "Newton's Laws",1);
-    this->addEdge("Gravity","Forces",  1);
     
     
-    this->addEdge( "Conservation of Energy","Conservation Laws", 1);
-    this->addEdge( "Work, Energy, Power", "Conservation of Energy",1);
-    this->addEdge( "Work-Energy Principle","Conservation of Energy", 1);
-    this->addEdge("Conservation Laws", "Mechanics", 1);
-    this->addEdge( "Conservation of Energy","Conservation Laws", 1);
-    this->addEdge( "Work, Energy, Power", "Conservation of Energy",1);
-    this->addEdge( "Work-Energy Principle", "Work, Energy, Power",1);
-    this->addEdge("Conservation of Angular Momentum","Conservation Laws", 1);
-    this->addEdge( "Conservation of Linear Momentum", "Conservation Laws",1);
     
-    this->addEdge( "Orbits","Circular Motion", 1);
-    this->addEdge( "Rotation","Orbits", 1);
-    this->addEdge("Equilibrium","Torques",  1);
-    this->addEdge( "Torques", "Conservation of Angular Momentum",1);
-
 }
 
 Graph::~Graph()
@@ -102,7 +155,7 @@ Graph::~Graph()
 
 
 
-void Graph::addVertex(string n){
+void Graph::addVertex(string n, string _eqn1, string _eqn2){
     bool found = false;
     for(int i = 0; i < vertices.size(); i++){
         if(vertices[i].topic == n){
@@ -119,7 +172,20 @@ void Graph::addVertex(string n){
         //maybe a for loop and loop through the vertex topics and if match found link that root
         //then when we printout we probably should print each set of equations with each topic? or only at end?
         v.previous = nullptr;
+        
+        
+        infoBlock *eqn1 = new infoBlock;
+        infoBlock *eqn2 = new infoBlock;
+        eqn1->equation = _eqn1;
+        eqn2->equation = _eqn2;
+        eqn1->next = eqn2;
+        eqn2->next = nullptr;
+        
+        v.equations = eqn1;
+        
         vertices.push_back(v);
+        
+        
         
     }
 }
@@ -144,7 +210,7 @@ void Graph:: printGraph(){
     for(int x = 0; x < vertices.size(); x++){
         cout << "** "<<vertices[x].topic << "-->" ;
         for(int i = 0; i < (vertices[i].adj.size()); i ++){
-            int valueTest =(vertices[i].adj.size())/5;
+            int valueTest =(vertices[i].adj.size());
             if(vertices[x].adj.size() == 0){
                 break;
             }
@@ -178,7 +244,7 @@ void Graph::printGraph2(){
 
 void Graph:: BFS_traversal(string _topic){
     cout <<"============================================================" << endl;
-
+    
     vertex * startingVertex = search_Vertex(_topic);
     
     //KEY you need to make sure the values are correct before you go down this path.
@@ -186,7 +252,7 @@ void Graph:: BFS_traversal(string _topic){
         vertices[i].visited = false;
     }
     cout << "# " << _topic << endl;
-
+    
     startingVertex-> visited = true;
     queue<vertex *> visitedQ;
     visitedQ.push(startingVertex); //line 3
@@ -201,11 +267,29 @@ void Graph:: BFS_traversal(string _topic){
                 visitedQ.push(n->adj[x].v);
             }
         }
+        cout << endl;
+    }
+}
 
+void Graph:: DFS(vertex * topic){
+    topic->visited = true;
+    for(int x = 0; x < topic->adj.size(); x++){
+        if(!topic->adj[x].v->visited){
+            cout << topic->adj[x].v->topic;
+            DFS(topic->adj[x].v);
+        }
     }
 }
 
 void Graph:: DFS_traversal(string _topic){
+    
+    
+    vertex * searchVertex = search_Vertex(_topic);
+    
+    cout << "% vertex->name: " << searchVertex->topic << endl;
+    
+    DFS(searchVertex);
+    
     
 }
 
@@ -220,6 +304,35 @@ int Graph::  search_index(string _topic){ //returns index
     }
     return NULL;
 }
+
+void  Graph:: DFS_iterrative(string _topic){
+    
+    //KEY you need to make sure the values are correct before you go down this path.
+    for(int i=0; i<vertices.size(); i++){
+        vertices[i].visited = false;
+    }
+    
+    vertex * searchVertex = search_Vertex(_topic);
+    searchVertex->visited =true;
+    searchVertex->distance = 0;
+    queue<vertex *> stack;
+    
+    stack.push(searchVertex);
+    while(!stack.empty()){
+        vertex * temp = stack.front();
+        stack.pop();
+        cout << temp->topic;
+        for(int x= 0; x< temp->adj.size(); x++){
+            if(!temp->adj[x].v->visited){
+                temp->adj[x].v->visited = true;
+                stack.push(temp->adj[x].v);
+            }
+            cout << " ";
+        }
+    }
+}
+
+
 /*====================================================================================================================================================================================================================*/
 vertex * Graph::  search_Vertex(string _topic){ //returns vertex.
     for(int i = 0; i < vertices.size(); i++)
@@ -293,10 +406,10 @@ void Graph::Dijkstra(string starting, string destination)
         }
         vertex *vert = ending;
         while (vert != nullptr) {
-            path.push_back(vert);
+            path.push_back(vert); //this is where its at.
             vert = vert->previous;
         }
-        cout << "Shortist Path" << endl;
+        cout << "Shortist Pat &h" << endl;
         for (int i = 0; i < path.size(); i++) {
             if (i == path.size()-1)
                 cout<<path[path.size()-1-i]->topic;
@@ -304,6 +417,12 @@ void Graph::Dijkstra(string starting, string destination)
                 cout<<path[path.size()-1-i]->topic<<" -> ";
             
         }
+        //        cout <<"============================================================" << endl;
+        //        for (int j=0; j<path.size()-1; j++) {
+        //            cout << path[path.size()-1-j]->equations->topicName << endl;
+        //        }
+        //        cout <<"============================================================" << endl;
+        //
         cout<<endl;
         cout<<"Minimum Distance: "<<solved[solved.size()-1]->distance<<endl;
     }else if (ending!=nullptr){
@@ -314,3 +433,71 @@ void Graph::Dijkstra(string starting, string destination)
         exit(1);
     }
 }
+
+
+
+void Graph:: print_equations(){
+    infoBlock *walker = nullptr;
+    for(int i=0; i < vertices.size(); i++){
+        
+        walker = vertices[i].equations;
+        
+        while(walker!=nullptr){
+            if(walker->equation == ""){
+                break;
+            }
+            else{
+                cout << walker->equation << endl;
+            }
+            walker = walker->next;
+        }
+        
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

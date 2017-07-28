@@ -1,0 +1,2 @@
+Voltage.V_1 + V_2 = V_total.V=IR
+Current.I_1 + I_2 = I_total.I=V/R
